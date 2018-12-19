@@ -58,9 +58,4 @@ public class Board {
             blocks.get(shipName).setAShip(true);
         }
     }
-
-    public static void main(String[] args) {
-        Board board = new Board("111", 25);
-        board.start(true);
-    }
 }
