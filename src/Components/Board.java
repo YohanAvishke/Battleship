@@ -18,7 +18,7 @@ public class Board {
         this.size = size;
     }
 
-    public void Start(boolean running) {
+    public void start(boolean running) {
         this.running = running;
         System.out.println("Loading...");
         if (running) {
@@ -41,7 +41,7 @@ public class Board {
         for (int j = 0; j < letters.length; j++) {
             for (int i = 0; i < boardLength; i++) {
                 Block block = new Block(letters[j] + String.valueOf((i + 1)), false);
-                blocks.put(block.getId(),block);
+                blocks.put(block.getId(), block);
             }
         }
         numShips = (size * 30) / 100;
@@ -52,10 +52,15 @@ public class Board {
         //generate ships
         System.out.println("Alert enemy approaching...");
         for (int i = 0; i < numShips; i++) {
-            char letter = letters[(int) Math.ceil(Math.random() * boardLength)];
+            char letter = letters[(int) (Math.ceil(Math.random() * boardLength) - 1)];
             String number = String.valueOf((int) Math.ceil(Math.random() * boardLength));
             String shipName = letter + number;
             blocks.get(shipName).setAShip(true);
         }
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board("111", 25);
+        board.start(true);
     }
 }
