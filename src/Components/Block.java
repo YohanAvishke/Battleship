@@ -2,27 +2,19 @@ package Components;
 
 public class Block {
     private String id;
-    private boolean clicked;
+    private boolean isAShip;
+    private boolean destroyed;
 
-    public Block(String id, boolean clicked) {
+    public Block(String id, boolean destroyed) {
         this.id = id;
-        this.clicked = clicked;
+        this.destroyed = destroyed;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAShip(boolean AShip) {
+        isAShip = AShip;
     }
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
-
 }
