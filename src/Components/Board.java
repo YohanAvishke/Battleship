@@ -57,14 +57,18 @@ public class Board {
         }
     }
 
+    //sync is not added to the whole method as it will unnecessarily block execution of all other methods too
     public Board getInstance(String id, int size) {
-        if (board != null){
-            synchronized (this){
-                if (board != null){
+        //sync is not added to the first if as it will unnecessarily block the threads which are not trying t create
+        //more objects
+        if (board != null) {
+            synchronized (this) {
+                //cause one or more threads can get pass the first if
+                if (board != null) {
                     board = new Board(id, size);
                 }
             }
         }
-        return  board;
+        return board;
     }
 }
