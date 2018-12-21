@@ -11,7 +11,6 @@ public class Board {
     private boolean running;//to flag the time to make a winner
     private Map<String, Block> blocks = new HashMap<>();
     private Map<String, Block> ships = new HashMap<>();
-    private List<Player> players = new ArrayList<>();
 
     private Board(String id, int size) {
         this.id = id;
