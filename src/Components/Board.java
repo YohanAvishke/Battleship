@@ -1,8 +1,6 @@
 package Components;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Board {
@@ -11,6 +9,7 @@ public class Board {
     private boolean running;//to flag the time to make a winner
     private Map<String, Block> blocks = new HashMap<>();
     private Map<String, Block> ships = new HashMap<>();
+    private Board board = null;
 
     private Board(String id, int size) {
         this.id = id;
@@ -56,5 +55,16 @@ public class Board {
             String shipName = letter + number;
             blocks.get(shipName).setAShip(true);
         }
+    }
+
+    public Board getInstance(String id, int size) {
+        if (board != null){
+            synchronized (this){
+                if (board != null){
+                    board = new Board(id, size);
+                }
+            }
+        }
+        return  board;
     }
 }
