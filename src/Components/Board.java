@@ -9,7 +9,7 @@ public class Board {
     private boolean running;//to flag the time to make a winner
     private Map<String, Block> blocks = new HashMap<>();
     private Map<String, Block> ships = new HashMap<>();
-    private Board board = null;
+    private static Board board = null;
 
     private Board(String id, int size) {
         this.id = id;
@@ -58,13 +58,13 @@ public class Board {
     }
 
     //sync is not added to the whole method as it will unnecessarily block execution of all other methods too
-    public Board getInstance(String id, int size) {
+    public static Board getInstance(String id, int size) {
         //sync is not added to the first if as it will unnecessarily block the threads which are not trying t create
         //more objects
-        if (board != null) {
-            synchronized (this) {
+        if (board == null) {
+            synchronized (Board.class) {
                 //cause one or more threads can get pass the first if
-                if (board != null) {
+                if (board == null) {
                     board = new Board(id, size);
                 }
             }
